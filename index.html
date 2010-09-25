@@ -1,1 +1,230 @@
-My GitHub Page
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+        <title>Achtung Test</title>
+        <!-- <link rel="stylesheet" href="demo.css" type="text/css" media="screen" charset="utf-8" /> -->
+        <link rel="stylesheet" href="ui.achtung.css" type="text/css" media="screen" charset="utf-8" />
+        <script src="jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="ui.achtung.js" type="text/javascript" charset="utf-8"></script>
+    </head>
+<body>
+    <div id="doc">
+    <h1>Demo for achtung %%VERSION%%</h1>
+    <div>
+        <button onclick="createOne();">Create, store in var</button>
+        <button onclick="closeOne();">Close stored in var</button>
+        <button onclick="updateOne();">Update stored in var</button>
+        <button onclick="updateOneMessage();">Update stored in var (message only)</button>
+        <button onclick="directChange();">Change color directly w/ $.css()</button>
+    </div>
+    <div>
+        <button onclick="changeDefaults();">Change Defaults</button>
+        <button onclick="loadJQueryUI();">Load jQuery UI</button>
+        <button onclick="toggleSwitchClass();">Toggle animateSwitchClass default (no effect without jQuery UI loaded)</button>
+    </div>
+    <div>
+        <button onclick="createNewTimed();">Create New Timed (w/ extended defaults)</button>
+        <button onclick="createNewSticky();">Create New Sticky</button>
+        <button onclick="createNewWaitIcon();">Create New Timed w/ Wait Icon</button>
+        <button onclick="createNewCustom();">Create New Custom</button>
+        <button onclick="createNewDisableEffects();">Create with no effects</button>
+    </div>
+    <div>
+        <button onclick="closeFirst();">Close First</button>
+        <button onclick="closeLast();">Close Last</button>
+        <button onclick="closeAll();">Close All</button>
+    </div>
+    <h1 style="margin-top: 10px;">HTML Ipsum Presents</h1>
+
+    <p><strong>Pellentesque habitant morbi tristique</strong> senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. <em>Aenean ultricies mi vitae est.</em> Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, <code>commodo vitae</code>, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. <a href="#">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.</p>
+
+    <h2>Header Level 2</h2>
+
+    <ol>
+       <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+       <li>Aliquam tincidunt mauris eu risus.</li>
+    </ol>
+
+    <blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis, tellus est malesuada tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.</p></blockquote>
+
+    <h3>Header Level 3</h3>
+
+    <ul>
+       <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+       <li>Aliquam tincidunt mauris eu risus.</li>
+    </ul>
+
+    <pre><code>
+    #header h1 a { 
+    	display: block; 
+    	width: 300px; 
+    	height: 80px; 
+    }
+    </code></pre>
+    </div>
+    <script type="text/javascript">
+    //<![CDATA[
+    /*globals $
+    */
+    
+    var one, achtungCount = 1, updateClass = '',
+        exampleBaseSuccess = {
+            timeout: 5,
+            className: 'achtungSuccess',
+            icon: 'ui-icon-check'
+        };
+    
+    $(function() {
+        one = $.achtung({
+            timeout: 0,
+            message: 'Test! ' + achtungCount++
+        });
+    });
+
+    function loadJQueryUI()
+    {
+        $.getScript('jquery-ui-1.7.2.custom.min.js');
+    }
+    
+    function toggleSwitchClass()
+    {
+        $.achtung.defaults.animateClassSwitch =
+            $.achtung.defaults.animateClassSwitch ? false : true;
+    }
+
+    function changeDefaults()
+    {
+        $.achtung.defaults.className = 
+            $.achtung.defaults.className === 'achtungSuccess' ? 
+                'achtungFail' : 'achtungSuccess';
+
+        $.achtung.defaults.icon = 
+            $.achtung.defaults.icon === 'ui-icon-check' ? 
+                'ui-icon-alert' : 'ui-icon-check';
+    }
+
+    function createNewTimed()
+    {
+        $.achtung(exampleBaseSuccess, {
+            message: 'New timed! ' + achtungCount++
+        });
+        
+    }
+
+    function createNewWaitIcon()
+    {
+        $.achtung({
+            className: 'achtungWait',
+            icon: 'wait-icon',
+            timeout: 5,
+            disableClose: true,
+            message: 'New waiting message.. ' + achtungCount++
+        });
+        
+    }
+
+    function createNewSticky()
+    {
+        $.achtung({
+            timeout: 0,
+            message: 'New sticky (w/ default CSS) ' + achtungCount++
+        });
+        
+    }
+
+    function createNewDisableEffects()
+    {
+        $.achtung({
+            timeout: 5,
+            showEffects: false,
+            hideEffects: false,
+            message: 'New with no effects ' + achtungCount++
+        });
+        
+    }
+
+    function createNewCustom()
+    {
+        $('<div id="myCustomAchtung">' +
+            '<img src="images/rip.jpg" alt="What a rip!" />' +
+            'Some stuff can go here a a a a a a a a too</div>')
+            .achtung({
+                className: 'achtungSuccess',
+                timeout: 0,
+                icon: false,
+                message: 'Custom! ' + achtungCount++
+            });
+        
+    }
+
+    function closeAll()
+    {
+        $('.achtung').achtung('close');
+    }
+    
+    function closeLast()
+    {
+        $('.achtung:last').achtung('close');
+    }
+    
+    function closeFirst()
+    {
+        $('.achtung:first').achtung('close');
+    }
+    
+    function createOne()
+    {
+        one = $.achtung({
+            timeout: 0,
+            message: 'Test! ' + achtungCount++
+        });
+    }
+
+    function closeOne()
+    {
+        if (one) {
+            one.achtung('close');
+            one = false;
+        }
+    }
+
+    function updateOne()
+    {
+        var message, icon;
+        
+        if (one) {
+            if (updateClass === 'achtungSuccess') {
+                updateClass = 'achtungFail';
+                message = 'This is a fail message (no icon)!';
+                icon = false;
+            } else {
+                updateClass = 'achtungSuccess';
+                message = 'This is a success message!';
+                icon = 'ui-icon-check';
+            }
+            
+            one.achtung('update', {className: updateClass, message: message, icon: icon});
+        }
+    }
+
+    function updateOneMessage()
+    {
+        var message, icon;
+        
+        if (one) {
+            one.achtung('update', {message: "Message changed! " + achtungCount++});
+        }
+    }
+
+    function directChange()
+    {
+        one.css({backgroundColor: '#455099'});
+    }
+    
+    //]]>
+    </script>
+</body>
+</html>
