@@ -12,7 +12,8 @@
     </head>
 <body>
     <div id="doc">
-    <h1>Demo for achtung %%VERSION%%</h1>
+    <h1>Demo for achtung</h1>
+    <p>Download the code here: <a href="http://github.com/DTrejo/achtung-ui" title="DTrejo's achtung-ui at master - GitHub">http://github.com/DTrejo/achtung-ui</a> </p>
     <div>
         <button onclick="createOne();">Create, store in var</button>
         <button onclick="closeOne();">Close stored in var</button>
@@ -69,161 +70,144 @@
     //<![CDATA[
     /*globals $
     */
-    
-    var one, achtungCount = 1, updateClass = '',
-        exampleBaseSuccess = {
-            timeout: 5,
-            className: 'achtungSuccess',
-            icon: 'ui-icon-check'
-        };
-    
-    $(function() {
-        one = $.achtung({
-            timeout: 0,
-            message: 'Test! ' + achtungCount++
-        });
-    });
+      var one, achtungCount = 1,
+      	updateClass = '',
+      	exampleBaseSuccess = {
+      	timeout: 5,
+      	className: 'achtungSuccess',
+      	icon: 'ui-icon-check'
+      };
 
-    function loadJQueryUI()
-    {
-        $.getScript('jquery-ui-1.7.2.custom.min.js');
-    }
-    
-    function toggleSwitchClass()
-    {
-        $.achtung.defaults.animateClassSwitch =
-            $.achtung.defaults.animateClassSwitch ? false : true;
-    }
+      $(function() {
+      	one = $.achtung({
+      		timeout: 0,
+      		message: 'Test! ' + achtungCount++
+      	});
+      });
 
-    function changeDefaults()
-    {
-        $.achtung.defaults.className = 
-            $.achtung.defaults.className === 'achtungSuccess' ? 
-                'achtungFail' : 'achtungSuccess';
+      function loadJQueryUI() {
+      	$.getScript('jquery-ui-1.7.2.custom.min.js');
+      }
 
-        $.achtung.defaults.icon = 
-            $.achtung.defaults.icon === 'ui-icon-check' ? 
-                'ui-icon-alert' : 'ui-icon-check';
-    }
+      function toggleSwitchClass() {
+      	$.achtung.defaults.animateClassSwitch = $.achtung.defaults.animateClassSwitch ? false : true;
+      }
 
-    function createNewTimed()
-    {
-        $.achtung(exampleBaseSuccess, {
-            message: 'New timed! ' + achtungCount++
-        });
-        
-    }
+      function changeDefaults() {
+      	$.achtung.defaults.className = $.achtung.defaults.className === 'achtungSuccess' ? 'achtungFail' : 'achtungSuccess';
 
-    function createNewWaitIcon()
-    {
-        $.achtung({
-            className: 'achtungWait',
-            icon: 'wait-icon',
-            timeout: 5,
-            disableClose: true,
-            message: 'New waiting message.. ' + achtungCount++
-        });
-        
-    }
+      	$.achtung.defaults.icon = $.achtung.defaults.icon === 'ui-icon-check' ? 'ui-icon-alert' : 'ui-icon-check';
+      }
 
-    function createNewSticky()
-    {
-        $.achtung({
-            timeout: 0,
-            message: 'New sticky (w/ default CSS) ' + achtungCount++
-        });
-        
-    }
+      function createNewTimed() {
+      	$.achtung(exampleBaseSuccess, {
+      		message: 'New timed! ' + achtungCount++
+      	});
 
-    function createNewDisableEffects()
-    {
-        $.achtung({
-            timeout: 5,
-            showEffects: false,
-            hideEffects: false,
-            message: 'New with no effects ' + achtungCount++
-        });
-        
-    }
+      }
 
-    function createNewCustom()
-    {
-        $('<div id="myCustomAchtung">' +
-            '<img src="images/rip.jpg" alt="What a rip!" />' +
-            'Some stuff can go here a a a a a a a a too</div>')
-            .achtung({
-                className: 'achtungSuccess',
-                timeout: 0,
-                icon: false,
-                message: 'Custom! ' + achtungCount++
-            });
-        
-    }
+      function createNewWaitIcon() {
+      	$.achtung({
+      		className: 'achtungWait',
+      		icon: 'wait-icon',
+      		timeout: 5,
+      		disableClose: true,
+      		message: 'New waiting message.. ' + achtungCount++
+      	});
 
-    function closeAll()
-    {
-        $('.achtung').achtung('close');
-    }
-    
-    function closeLast()
-    {
-        $('.achtung:last').achtung('close');
-    }
-    
-    function closeFirst()
-    {
-        $('.achtung:first').achtung('close');
-    }
-    
-    function createOne()
-    {
-        one = $.achtung({
-            timeout: 0,
-            message: 'Test! ' + achtungCount++
-        });
-    }
+      }
 
-    function closeOne()
-    {
-        if (one) {
-            one.achtung('close');
-            one = false;
-        }
-    }
+      function createNewSticky() {
+      	$.achtung({
+      		timeout: 0,
+      		message: 'New sticky (w/ default CSS) ' + achtungCount++
+      	});
 
-    function updateOne()
-    {
-        var message, icon;
-        
-        if (one) {
-            if (updateClass === 'achtungSuccess') {
-                updateClass = 'achtungFail';
-                message = 'This is a fail message (no icon)!';
-                icon = false;
-            } else {
-                updateClass = 'achtungSuccess';
-                message = 'This is a success message!';
-                icon = 'ui-icon-check';
-            }
-            
-            one.achtung('update', {className: updateClass, message: message, icon: icon});
-        }
-    }
+      }
 
-    function updateOneMessage()
-    {
-        var message, icon;
-        
-        if (one) {
-            one.achtung('update', {message: "Message changed! " + achtungCount++});
-        }
-    }
+      function createNewDisableEffects() {
+      	$.achtung({
+      		timeout: 5,
+      		showEffects: false,
+      		hideEffects: false,
+      		message: 'New with no effects ' + achtungCount++
+      	});
 
-    function directChange()
-    {
-        one.css({backgroundColor: '#455099'});
-    }
-    
+      }
+
+      function createNewCustom() {
+      	$('<div id="myCustomAchtung">' + '<img src="images/rip.jpg" alt="What a rip!" />' + 'Some stuff can go here a a a a a a a a too</div>').achtung({
+      		className: 'achtungSuccess',
+      		timeout: 0,
+      		icon: false,
+      		message: 'Custom! ' + achtungCount++
+      	});
+
+      }
+
+      function closeAll() {
+      	$('.achtung').achtung('close');
+      }
+
+      function closeLast() {
+      	$('.achtung:last').achtung('close');
+      }
+
+      function closeFirst() {
+      	$('.achtung:first').achtung('close');
+      }
+
+      function createOne() {
+      	one = $.achtung({
+      		timeout: 0,
+      		message: 'Test! ' + achtungCount++
+      	});
+      }
+
+      function closeOne() {
+      	if (one) {
+      		one.achtung('close');
+      		one = false;
+      	}
+      }
+
+      function updateOne() {
+      	var message, icon;
+
+      	if (one) {
+      		if (updateClass === 'achtungSuccess') {
+      			updateClass = 'achtungFail';
+      			message = 'This is a fail message (no icon)!';
+      			icon = false;
+      		} else {
+      			updateClass = 'achtungSuccess';
+      			message = 'This is a success message!';
+      			icon = 'ui-icon-check';
+      		}
+
+      		one.achtung('update', {
+      			className: updateClass,
+      			message: message,
+      			icon: icon
+      		});
+      	}
+      }
+
+      function updateOneMessage() {
+      	var message, icon;
+
+      	if (one) {
+      		one.achtung('update', {
+      			message: "Message changed! " + achtungCount++
+      		});
+      	}
+      }
+
+      function directChange() {
+      	one.css({
+      		backgroundColor: '#455099'
+      	});
+      }
     //]]>
     </script>
 </body>
