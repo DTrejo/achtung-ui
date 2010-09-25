@@ -1,7 +1,27 @@
 h1. Achtung-ui
 
-Forked from version 0.3.0r6 on code.google.com/p/achtung-ui/
+Forked from version 0.3.0r6 on "http://code.google.com/p/achtung-ui/":http://code.google.com/p/achtung-ui/
 
-Documentation at http://code.google.com/p/achtung-ui/wiki/Documentation
+Documentation at "http://code.google.com/p/achtung-ui/wiki/Documentation":http://code.google.com/p/achtung-ui/wiki/Documentation
 
-Demo at http://dtrejo.github.com/achtung-ui/
+Demo at "http://dtrejo.github.com/achtung-ui/":http://dtrejo.github.com/achtung-ui/
+
+h1. Example
+
+<pre>
+  // Create a new notification (5 second timeout)
+  $.achtung({message: 'Hello!', timeout:5});
+
+  // Create a new sticky notification, save as foo
+  foo = $.achtung({message: 'This will stay on-screen.', timeout: 0});
+
+  // Update with new message
+  foo.achtung('update', {message: 'Updated message!'});
+
+  // Close foo
+  foo.achtung('close');
+
+  // Remove all notifications
+  $('.achtung').achtung('close');
+</pre>
+
