@@ -1,1 +1,7 @@
+h1. Achtung-ui
+
 Forked from version 0.3.0r6 on code.google.com/p/achtung-ui/
+
+Documentation at http://code.google.com/p/achtung-ui/wiki/Documentation
+
+Demo at http://dtrejo.github.com/achtung-ui/
